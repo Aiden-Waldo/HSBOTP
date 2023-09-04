@@ -6,6 +6,9 @@ created: 2023-09-02
 
 # changing from ah to bz
 
+'''
+legacy
+
 # step 1: establish API connection
 
 import requests
@@ -40,3 +43,10 @@ for i in range(len(response)-1, -1, -1):
         continue
 
 print(len(response))
+'''
+
+# Step I: get data from API
+
+import requests
+
+response = requests.get('https://hypixel.net/skyblock/bazaar')
