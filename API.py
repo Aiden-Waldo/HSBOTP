@@ -48,5 +48,6 @@ print(len(response))
 # Step I: get data from API
 
 import requests
-
+# key = '863aa4eb-485c-4c0c-ac39-08e7976f1296'
 response = requests.get('https://hypixel.net/skyblock/bazaar')
+print(response)
