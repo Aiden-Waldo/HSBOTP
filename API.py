@@ -48,6 +48,33 @@ print(len(response))
 # Step I: get data from API
 
 import requests
+import json
 # key = '863aa4eb-485c-4c0c-ac39-08e7976f1296'
-response = requests.get('https://hypixel.net/skyblock/bazaar')
-print(response)
+response = requests.get('https://api.hypixel.net/skyblock/bazaar')
+response = json.loads(json.dumps(response.json(), sort_keys=True, indent=4))
+
+products = response['products']
+
+
+class Product:
+
+    def __str__(self):
+        return self.name
+
+    def __init__(self, name, sell_price, buy_price, moving):
+        self.name = name
+        self.sell_price = int(round(sell_price, 0))
+        self.buy_price = int(round(buy_price, 0))
+        self.spread = int(round(self.buy_price - self.sell_price, 0))
+        self.moving = moving
+    
+things = []
+
+for product in products:
+    status = products[product]['quick_status']
+    things.append(Product(product, status['sellPrice'], status['buyPrice'], status['sellMovingWeek'] + status['buyMovingWeek']))
+
+things.sort(key=lambda x:x.spread, reverse=True)
+
+for i in range(5):
+    print(things[i])
