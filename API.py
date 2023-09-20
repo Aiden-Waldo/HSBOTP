@@ -68,6 +68,9 @@ class Product:
         self.spread = int(round(self.buy_price - self.sell_price, 0))
         self.moving = moving
     
+    def stats(self):
+        return f"Item: {self.name}\nSell Price: {self.sell_price}\nBuy Price: {self.buy_price}\nSpread: {self.spread}\nWeekly Moving: {self.moving}"
+    
 things = []
 
 for product in products:
@@ -76,5 +79,5 @@ for product in products:
 
 things.sort(key=lambda x:x.spread, reverse=True)
 
-for i in range(5):
-    print(things[i])
+for i in range(200, 206):
+    print(things[i].stats())
